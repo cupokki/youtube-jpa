@@ -92,23 +92,30 @@ public class AdminController {
 
     //뷰
     @GetMapping("/admins/{adminSeq}")
-    public String  get(@PathVariable("adminSeq") Long adminSeq, Model model) {
+    public String  get(@PathVariable("adminSeq") Long adminSeq, Model model) throws Exception {
 
-        Optional<Admin> optionalAdmin = adminService.find(adminSeq);
+//        Optional<Admin> optionalAdmin = adminService.find(adminSeq);
+//
+//        if (optionalAdmin.isPresent()) {
+//            Admin admin = optionalAdmin.get();
+//            admin.setAdminPw("");
+//
+//            // 모델에 추가
+//            model.addAttribute("post", admin);
+//            model.addAttribute("title", "관리자관리-상세조회");
+//
+//        } else {
+//            model.addAttribute("msg", "해당관리자가 존재하지 않습니다.");
+//        }
+//
+//        return "mgr/admin/view";
 
-        if (optionalAdmin.isPresent()) {
-            Admin admin = optionalAdmin.get();
-            admin.setAdminPw("");
-
-            // 모델에 추가
-            model.addAttribute("post", admin);
-            model.addAttribute("title", "관리자관리-상세조회");
-
-        } else {
-            model.addAttribute("msg", "해당관리자가 존재하지 않습니다.");
-        }
+        Admin optionalAdmin = adminService.find(adminSeq);
 
         return "mgr/admin/view";
+
+
+
     }
 
     //생성화면
@@ -136,7 +143,7 @@ public class AdminController {
 
     //수정화면
     @GetMapping("/admins/{adminSeq}/update")
-    public String updateForm(@PathVariable("adminSeq") Long adminSeq, Model model) {
+    public String updateForm(@PathVariable("adminSeq") Long adminSeq, Model model) throws Exception {
 
         model.addAttribute("post", adminService.find(adminSeq));
         model.addAttribute("title", "관리자관라-수정" );

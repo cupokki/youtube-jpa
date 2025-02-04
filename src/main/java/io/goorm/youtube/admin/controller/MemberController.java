@@ -40,23 +40,26 @@ public class MemberController {
 
     //뷰
     @GetMapping("/members/{memberSeq}")
-    public String  get(@PathVariable Long memberSeq, Model model) {
+    public String  get(@PathVariable Long memberSeq, Model model) throws Exception {
 
 
-        Optional<Member> optionalMember = memberService.find(memberSeq);
+        Member member = memberService.find(memberSeq);
 
-        if (optionalMember.isPresent()) {
-            Member member = optionalMember.get();
-            member.setMemberPw("");
-
-            // 모델에 추가
-            model.addAttribute("post", member);
-            model.addAttribute("title", "사용자관라-상세화면" );
-
-        } else {
-            model.addAttribute("msg", "해당사용자가 존재하지 않습니다.");
-        }
-
+//        if (optionalMember.isPresent()) {
+//            Member member = optionalMember.get();
+//            member.setMemberPw("");
+//
+//            // 모델에 추가
+//            model.addAttribute("post", member);
+//            model.addAttribute("title", "사용자관라-상세화면" );
+//
+//        } else {
+//            model.addAttribute("msg", "해당사용자가 존재하지 않습니다.");
+//        }
+        member.setMemberPw("");
+        // 모델에 추가
+        model.addAttribute("post", member);
+        model.addAttribute("title", "사용자관라-상세화면" );
         return "mgr/member/view";
     }
 

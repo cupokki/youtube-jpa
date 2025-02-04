@@ -12,7 +12,7 @@ public interface MemberService {
 
     public Member login(Member member);
 
-    public Optional<Member> find(Long seq);
+    public Member find(Long seq) throws Exception;
 
     public boolean existsById(String seq);
 

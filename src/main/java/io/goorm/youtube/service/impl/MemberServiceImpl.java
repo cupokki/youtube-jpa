@@ -34,9 +34,9 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findByMemberId(member.getMemberId());
     }
 
-    public Optional<Member> find(Long memberSeq) {
+    public Member find(Long memberSeq) throws Exception {
 
-        return memberRepository.findById(memberSeq);
+        return memberRepository.findById(memberSeq).orElseThrow(()->new Exception("일치하는 회원이 없습니다."));
     }
 
     public boolean existsById(String memberId) {

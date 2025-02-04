@@ -38,7 +38,7 @@ public class VideoController {
 
     //뷰
     @GetMapping("/videos/{videoSeq}")
-    public String  get(@PathVariable("videoSeq") Long videoSeq, Model model) {
+    public String  get(@PathVariable("videoSeq") Long videoSeq, Model model) throws Exception {
 
         model.addAttribute("posts", videoService.find(videoSeq));
         model.addAttribute("title", "비디오-상세조회" );
@@ -101,7 +101,7 @@ public class VideoController {
 
     //수정화면
     @GetMapping("/videos/{videoSeq}/update")
-    public String updateForm(@PathVariable("videoSeq") Long videoSeq, Model model) {
+    public String updateForm(@PathVariable("videoSeq") Long videoSeq, Model model) throws Exception {
 
         model.addAttribute("posts", videoService.find(videoSeq));
         model.addAttribute("title", "비디오-수정" );

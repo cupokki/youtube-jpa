@@ -15,7 +15,7 @@ public interface VideoService {
 
     public List<Video> findAll();
 
-    public Optional<Video> find(Long videoSeq);
+    public Video find(Long videoSeq) throws Exception;
 
     public Video save(Video video);
 

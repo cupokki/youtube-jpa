@@ -116,7 +116,7 @@ public class MemberController {
 
     //profile폼 뷰
     @GetMapping("/members")
-    public String profileForm(HttpSession session, Model model) {
+    public String profileForm(HttpSession session, Model model) throws Exception {
 
 
         Member sessionMember = (Member) session.getAttribute("member");
@@ -126,20 +126,22 @@ public class MemberController {
             return "redirect:/login";
         }
 
-        Optional<Member> optionalMember = memberService.find(sessionMember.getMemberSeq());
+        Member member = memberService.find(sessionMember.getMemberSeq());
 
-        if (optionalMember.isPresent()) {
-            Member member = optionalMember.get();
-            member.setMemberPw("");
+//        if (optionalMember.isPresent()) {
+//            Member member = optionalMember.get();
+//            member.setMemberPw("");
 
             // 모델에 추가
-            model.addAttribute("member", member);
-            model.addAttribute("title", "사용자관라-상세화면" );
+//            model.addAttribute("member", member);
+//            model.addAttribute("title", "사용자관라-상세화면" );
 
-        } else {
-            model.addAttribute("msg", "해당사용자가 존재하지 않습니다.");
-        }
-
+//        } else {
+//            model.addAttribute("msg", "해당사용자가 존재하지 않습니다.");
+//        }
+        member.setMemberPw(""); // 기존 비밀번호 가려야하니까
+        model.addAttribute("member", member);
+        model.addAttribute("title", "사용자관라-상세화면" );
         return "profile";
     }
 

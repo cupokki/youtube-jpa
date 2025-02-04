@@ -7,14 +7,10 @@ import io.goorm.youtube.service.AdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -40,9 +36,10 @@ public class AdminServiceImpl implements AdminService {
 
     }
 
-    public Optional<Admin> find(Long adminSeq) {
+    public Admin find(Long adminSeq) throws Exception {
 
-        return adminRepository.findById(adminSeq);
+        var result = adminRepository.findById(adminSeq).orElseThrow(()-> new Exception("일치하는 회원이 없습니다."));
+        return result;
     }
 
     public Admin save(Admin admin) {

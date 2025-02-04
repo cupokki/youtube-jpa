@@ -4,14 +4,13 @@ package io.goorm.youtube.service;
 import io.goorm.youtube.domain.Admin;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface AdminService {
 
     public List<Admin> findAll();
 
-    public Optional<Admin> find(Long adminSeq);
+    public Admin find(Long adminSeq) throws Exception;
 
     public Admin login(Admin admin);
 

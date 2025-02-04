@@ -33,9 +33,9 @@ public class VideoServiceImpl implements VideoService {
         return videoRepository.findAll();
     }
 
-    public Optional<Video> find(Long videoSeq) {
+    public Video find(Long videoSeq) throws Exception {
 
-        return videoRepository.findById(videoSeq);
+        return videoRepository.findById(videoSeq).orElseThrow(()-> new Exception("비디오가 존재하지 않습니다."));
     }
 
     public Video save(Video video) {
